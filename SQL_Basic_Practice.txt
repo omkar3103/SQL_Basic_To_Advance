@@ -1,0 +1,56 @@
+use college_db;
+
+create table students(
+rollno int,
+name varchar(20),
+mobile char(10),
+gender enum('Male','Female','Others'),
+marks float,
+dob date
+
+);
+
+select * from students;
+
+update students set dob='2002-07-16' where name='Omkar'; 
+
+insert into students values 
+							(3,'manoj',9860118969,'Male',98.54,'1975-05-31'),
+                            (4,'Bhagyashreee',9022664951,'Female',99.32,'1980-07-03');
+                            
+
+select name,marks from students ;
+
+select * from students where gender='Female';				
+				
+select * from students where dob>'2002-01-01';
+
+select * from students where marks between 80 and 99 ;
+
+select * from students where marks> 80 and marks<90;
+
+select * from students where name like '%r%';
+
+select * from students where name like '%j';
+
+select * from students where marks not between 70 and 90 ;
+
+select * from students order by marks desc ;
+
+select count(rollno) as count_student from students;
+
+select max(marks) as highest_marks from students;
+
+select rollno, name , gender,marks from students where marks = 
+(select max(marks) from students);
+
+
+select * from students order by marks desc;
+
+select * from students where marks = 
+(select max(marks) from students where 
+marks < (select max(marks) from students where 
+marks < (select max(marks) from students))
+);
+
+drop table students2;
